@@ -3,5 +3,6 @@
 use Api\Auth\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
-Route::post('login' , ['login',AuthController::class]);
-Route::post('logout' , ['logout',AuthController::class]);
+Route::post('login' , [AuthController::class , 'login']);
+Route::post('logout' , [AuthController::class , 'logout'])->middleware(['auth:sanctum']);
+
