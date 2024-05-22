@@ -40,8 +40,8 @@ class BlogPostController extends Controller
 
     public function update(BlogPost $post , BlogPostUpdateRequest $request)
     {
-        $result = $this->repository->update($post,$request->validated());
-        return $this->successResponse(new FullBlogPostResource($result),200,'با موفقیت به روز رسانی شد.');
+        $this->repository->update($post,$request->validated());
+        return $this->successResponse(null,200,'با موفقیت به روز رسانی شد.');
     }
 
     public function delete(BlogPost $post)

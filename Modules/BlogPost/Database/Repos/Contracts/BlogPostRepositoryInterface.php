@@ -24,7 +24,7 @@ interface BlogPostRepositoryInterface
      * @param array $inputs
      * @return BlogPost
      */
-    public function update(BlogPost $post ,array $inputs) :BlogPost;
+    public function update(BlogPost $post ,array $inputs) :bool;
 
     /**
      * @param BlogPost $post
