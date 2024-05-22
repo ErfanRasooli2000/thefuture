@@ -173,6 +173,7 @@ return [
         \Api\Category\Providers\CategoryServiceProvider::class,
         \Api\Comment\Providers\CommentServiceProvider::class,
         \Api\BlogPost\Providers\BlogPostServiceProvider::class,
+        \Api\Setting\Providers\SettingServiceProvider::class,
     ])->toArray(),
 
     /*
