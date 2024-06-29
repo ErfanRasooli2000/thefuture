@@ -17,7 +17,7 @@ class BlogPostServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
         Route::prefix('api/blog-post')
-            ->middleware(['apt' , 'auth:sanctum'])
+            ->middleware(['api' , 'auth:sanctum'])
             ->group(__DIR__ . '/../Routes/api_routes.php');
     }
 }
