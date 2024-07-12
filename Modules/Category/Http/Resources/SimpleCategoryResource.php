@@ -20,7 +20,8 @@ class SimpleCategoryResource extends JsonResource
             'name' => $this->name,
             'creator' => new SimpleUserResource($this->whenLoaded('creator')),
             'updater' => new SimpleUserResource($this->whenLoaded('updater')),
-            'created_at' => verta($this->created_at)->format('Y-m-d H:i:s')
+            'created_at' => verta($this->created_at)->format('Y-m-d H:i:s'),
+            'parent' => new SimpleCategoryResource($this->whenLoaded('parent')),
         ];
     }
 }

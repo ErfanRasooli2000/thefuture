@@ -7,7 +7,7 @@ use Api\Category\Http\Requests\CreateCategoryRequest;
 use Api\Category\Http\Requests\UpdateCategoryRequest;
 use Api\Category\Http\Resources\FullCategoryResource;
 use Api\Category\Http\Resources\HeaderCategoryResource;
-use Api\Category\Http\Resources\SelectCategoryResource;
+use Api\Category\Http\Resources\ForSelectCategoryResource;
 use Api\Category\Http\Resources\SimpleCategoryResource;
 use Api\Category\Models\Category;
 use App\Http\Controllers\Controller;
@@ -69,7 +69,7 @@ class CategoryController extends Controller
     {
         $result = $this->categoryRepository->forSelect();
         return $this->successResponse(
-            SelectCategoryResource::collection($result)
+            ForSelectCategoryResource::collection($result)
         );
     }
 

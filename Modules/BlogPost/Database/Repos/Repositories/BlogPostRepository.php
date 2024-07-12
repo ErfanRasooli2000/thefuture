@@ -18,7 +18,7 @@ class BlogPostRepository implements BlogPostRepositoryInterface
     {
         return $this->model
             ->newQuery()
-            ->with(['creator' , 'category'])
+            ->with(['creator' , 'categories'])
             ->when($request->get('title') , function ($q,$value){
                 $q->where("title" , "LIKE" , "%$value%");
             })

@@ -5,7 +5,7 @@ namespace Api\Category\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SelectCategoryResource extends JsonResource
+class ForSelectCategoryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

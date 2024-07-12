@@ -17,7 +17,7 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         return $this->model
             ->newQuery()
-            ->with(['creator'])
+            ->with(['creator' , 'parent'])
             ->when($request->get('name') , function ($q , $value){
                 $q->where('name' , "like" , "%$value%");
             })
