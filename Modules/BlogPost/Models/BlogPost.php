@@ -11,10 +11,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class BlogPost extends Model
 {
-    use HasFactory , SoftDeletes;
+    use HasFactory , SoftDeletes , LogsActivity;
 
     protected $fillable = [
         "content",
@@ -41,5 +43,10 @@ class BlogPost extends Model
     public function tags() :MorphMany
     {
         return $this->morphMany(Tag::class, 'tagable');
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults();
     }
 }

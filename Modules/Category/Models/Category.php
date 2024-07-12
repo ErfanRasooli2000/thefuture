@@ -8,12 +8,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\LogOptions;
 
 class Category extends Model
 {
     use HasFactory , SoftDeletes;
 
     protected $guarded = [];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults();
+    }
 
     public function creator(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
