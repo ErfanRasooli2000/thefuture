@@ -24,7 +24,10 @@ class BlogPostCreateRequest extends FormRequest
         return [
             'title' => ['required' , 'string'],
             'content' => ['required' , 'string'],
-            'category_id' => ['required' , 'exists:categories,id'],
+            "categories" => ['required' , 'array'],
+            'categories.*' => ['required' , 'exists:categories,id'],
+            "tags" => ['required' , 'array'],
+            "tags.*" => ['required'],
         ];
     }
 

@@ -174,6 +174,7 @@ return [
         \Api\Comment\Providers\CommentServiceProvider::class,
         \Api\BlogPost\Providers\BlogPostServiceProvider::class,
         \Api\Setting\Providers\SettingServiceProvider::class,
+        \Api\Tag\Routes\TagServiceProvider::class,
     ])->toArray(),
 
     /*

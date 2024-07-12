@@ -23,6 +23,14 @@ return new class extends Migration
             $table->foreign('updated_by')->references('id')->on('users')->nullOnDelete();
             $table->foreign('created_by')->references('id')->on('users')->nullOnDelete();
         });
+
+        Schema::create('category_blogpost' , function (Blueprint $table) {
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('modelable_id');
+            $table->string('modelable_type');
+
+            $table->foreign('category_id')->references('id')->on('categories')->cascadeOnDelete();
+        });
     }
 
     /**
@@ -31,5 +39,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('categories');
+        Schema::dropIfExists('category_blogpost');
     }
 };

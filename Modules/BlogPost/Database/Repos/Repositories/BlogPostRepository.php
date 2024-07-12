@@ -4,6 +4,7 @@ namespace Api\BlogPost\Database\Repos\Repositories;
 
 use Api\BlogPost\Database\Repos\Contracts\BlogPostRepositoryInterface;
 use Api\BlogPost\Models\BlogPost;
+use Api\Tag\Models\Tag;
 use Illuminate\Http\Request;
 
 class BlogPostRepository implements BlogPostRepositoryInterface
@@ -32,8 +33,23 @@ class BlogPostRepository implements BlogPostRepositoryInterface
 
     public function create(array $inputs): BlogPost
     {
-        return $this->model
-            ->create($inputs);
+        $post = $this->model->create($inputs);
+
+        $post->categories()->attach($inputs['categories']);
+
+        $tags = [];
+
+        foreach ($inputs['tags'] as $tag) {
+            $tags[] = [
+              'name' => $tag,
+              'tagable_id' => $post->id,
+              'tagable_type' => BlogPost::class,
+            ];
+        }
+
+        Tag::insert($tags);
+
+        return $post;
     }
 
     public function update(BlogPost $post, array $inputs): bool
