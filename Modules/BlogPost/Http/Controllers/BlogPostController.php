@@ -29,6 +29,7 @@ class BlogPostController extends Controller
 
     public function show(BlogPost $post)
     {
+        $post->load(['creator' , 'categories' , 'tags']);
         return $this->successResponse(new FullBlogPostResource($post));
     }
 
@@ -48,5 +49,11 @@ class BlogPostController extends Controller
     {
         $this->repository->delete($post);
         return $this->successResponse(null,200,'با موفقیت حذف شد.');
+    }
+
+    public function restore($id)
+    {
+        $this->repository->restore($id);
+        return $this->successResponse(null,200,'با موفقیت بازگردانده شد.');
     }
 }

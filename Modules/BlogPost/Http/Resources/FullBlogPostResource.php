@@ -2,6 +2,7 @@
 
 namespace Api\BlogPost\Http\Resources;
 
+use Api\Category\Http\Resources\ForSelectCategoryResource;
 use Api\Category\Http\Resources\SimpleCategoryResource;
 use Api\User\Http\Resources\SimpleUserResource;
 use Illuminate\Http\Request;
@@ -20,11 +21,13 @@ class FullBlogPostResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'content' => $this->content,
-            'creator' => new SimpleUserResource($this->whenLoaded('creator')),
-            'updater' => new SimpleUserResource($this->whenLoaded('updater')),
-            'category' => new SimpleCategoryResource($this->whenLoaded('category')),
-            'created_at' => $this->created_at->format("Y-m-d H:i:s"),
-            'updated_at' => $this->updated_at->format("Y-m-d H:i:s"),
+            'slug' => $this->slug,
+            "creator" => new SimpleUserResource($this->whenLoaded('creator')),
+            'categories' => ForSelectCategoryResource::collection($this->whenLoaded('categories')),
+            'tags' => $this->when($this->relationLoaded('tags'),function (){
+                return $this->tags->pluck("name")->toArray();
+            }),
+            'created_at' => verta($this->created_at)->format('Y-m-d H:i:s'),
         ];
     }
 }

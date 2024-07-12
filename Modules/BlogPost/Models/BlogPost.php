@@ -8,6 +8,7 @@ use Api\User\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -18,6 +19,7 @@ class BlogPost extends Model
     protected $fillable = [
         "content",
         "title",
+        "slug",
         "updated_by",
         "created_by",
     ];
@@ -36,8 +38,8 @@ class BlogPost extends Model
         return $this->morphToMany(Category::class, 'modelable' , 'category_blogpost');
     }
 
-    public function tags() :MorphToMany
+    public function tags() :MorphMany
     {
-        return $this->morphToMany(Tag::class , 'tagable' , 'tags' , 'id' );
+        return $this->morphMany(Tag::class, 'tagable');
     }
 }

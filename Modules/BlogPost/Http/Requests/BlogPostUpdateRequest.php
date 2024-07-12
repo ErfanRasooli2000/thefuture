@@ -3,6 +3,7 @@
 namespace Api\BlogPost\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class BlogPostUpdateRequest extends FormRequest
 {
@@ -23,8 +24,12 @@ class BlogPostUpdateRequest extends FormRequest
     {
         return [
             'title' => ['required' , 'string'],
+            'slug' => ['required','regex:/^[a-zA-Z0-9-_]+$/', Rule::unique('blog_posts', 'slug')->ignore($this->route('blogPost')->id)],
             'content' => ['required' , 'string'],
-            'category_id' => ['required' , 'exists:categories,id'],
+            "categories" => ['required' , 'array'],
+            'categories.*' => ['required' , 'exists:categories,id'],
+            "tags" => ['required' , 'array'],
+            "tags.*" => ['required'],
         ];
     }
 

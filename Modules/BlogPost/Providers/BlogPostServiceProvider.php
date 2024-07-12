@@ -2,7 +2,7 @@
 
 namespace Api\BlogPost\Providers;
 
-use Illuminate\Support\Facades\Route;
+use Api\BlogPost\Models\BlogPost;
 use Illuminate\Support\ServiceProvider;
 
 class BlogPostServiceProvider extends ServiceProvider
@@ -16,8 +16,10 @@ class BlogPostServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
-        Route::prefix('api/blog-post')
+        \Route::prefix('api/blog-post')
             ->middleware(['api' , 'auth:sanctum'])
             ->group(__DIR__ . '/../Routes/api_routes.php');
+
+        \Route::model('blogPost', BlogPost::class);
     }
 }

@@ -24,6 +24,7 @@ class BlogPostCreateRequest extends FormRequest
         return [
             'title' => ['required' , 'string'],
             'content' => ['required' , 'string'],
+            'slug' => ['required','regex:/^[a-zA-Z0-9-_]+$/', 'unique:blog_posts,slug'],
             "categories" => ['required' , 'array'],
             'categories.*' => ['required' , 'exists:categories,id'],
             "tags" => ['required' , 'array'],

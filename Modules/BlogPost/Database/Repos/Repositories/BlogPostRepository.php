@@ -28,37 +28,78 @@ class BlogPostRepository implements BlogPostRepositoryInterface
             ->when($request->get('category_id') , function ($q,$value){
                 $q->where('category_id' , $value);
             })
+            ->when(($request->get('type') == "justTrashed") , function ($q,$value){
+                $q->onlyTrashed();
+            })
             ->paginate(20);
     }
 
     public function create(array $inputs): BlogPost
     {
-        $post = $this->model->create($inputs);
+        $post = null;
 
-        $post->categories()->attach($inputs['categories']);
+        \DB::transaction(function () use ($inputs , &$post) {
 
-        $tags = [];
+            $post = $this->model->create($inputs);
 
-        foreach ($inputs['tags'] as $tag) {
-            $tags[] = [
-              'name' => $tag,
-              'tagable_id' => $post->id,
-              'tagable_type' => BlogPost::class,
-            ];
-        }
+            $post->categories()->attach($inputs['categories']);
 
-        Tag::insert($tags);
+            $tags = [];
+
+            foreach ($inputs['tags'] as $tag) {
+                $tags[] = [
+                    'name' => $tag,
+                    'tagable_id' => $post->id,
+                    'tagable_type' => BlogPost::class,
+                ];
+            }
+
+            if (!empty($tags))
+                Tag::insert($tags);
+
+        });
+
 
         return $post;
     }
 
     public function update(BlogPost $post, array $inputs): bool
     {
-        return $post->update($inputs);
+        \DB::transaction(function () use ($inputs , &$post) {
+
+            $post->update($inputs);
+
+            $post->categories()->sync($inputs['categories']);
+
+            Tag::where('tagable_type' , BlogPost::class)
+                ->where('tagable_id' , $post->id)
+                ->delete();
+
+            $tags = [];
+
+            foreach ($inputs['tags'] as $tag) {
+                $tags[] = [
+                    'name' => $tag,
+                    'tagable_id' => $post->id,
+                    'tagable_type' => BlogPost::class,
+                ];
+            }
+
+            if (!empty($tags))
+                Tag::insert($tags);
+
+        });
+
+        return true;
     }
 
-    public function delete(BlogPost $post): bool
+    public function delete(BlogPost $post): mixed
     {
         return $post->delete();
+    }
+
+    public function restore($id): mixed
+    {
+        return $this->model->where('id' , $id)->withTrashed()->restore();
     }
 }

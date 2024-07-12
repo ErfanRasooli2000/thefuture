@@ -19,6 +19,7 @@ class SimpleBlogPostResource extends JsonResource
     {
         return [
             "id" => $this->id,
+            "slug" => $this->slug,
             "title" => $this->title,
             "creator" => new SimpleUserResource($this->whenLoaded('creator')),
             'categories' => ForSelectCategoryResource::collection($this->whenLoaded('categories')),

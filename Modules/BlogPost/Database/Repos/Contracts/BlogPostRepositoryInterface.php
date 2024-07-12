@@ -22,7 +22,7 @@ interface BlogPostRepositoryInterface
     /**
      * @param BlogPost $post
      * @param array $inputs
-     * @return BlogPost
+     * @return bool
      */
     public function update(BlogPost $post ,array $inputs) :bool;
 
@@ -30,5 +30,11 @@ interface BlogPostRepositoryInterface
      * @param BlogPost $post
      * @return bool
      */
-    public function delete(BlogPost $post) :bool;
+    public function delete(BlogPost $post) :mixed;
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function restore($id) :mixed;
 }
