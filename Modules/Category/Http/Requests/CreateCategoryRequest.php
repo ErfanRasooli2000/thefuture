@@ -31,7 +31,6 @@ class CreateCategoryRequest extends FormRequest
     {
         $data = parent::validated($key, $default);
         $data['created_by'] = \Auth::id();
-        $data['updated_by'] = \Auth::id();
         return $data;
     }
 }

@@ -22,17 +22,11 @@ class BlogPost extends Model
         "content",
         "title",
         "slug",
-        "updated_by",
         "created_by",
     ];
     public function creator() :BelongsTo
     {
         return $this->belongsTo(User::class , 'created_by');
-    }
-
-    public function updater() :BelongsTo
-    {
-        return $this->belongsTo(User::class , 'updated_by');
     }
 
     public function categories() :MorphToMany
@@ -47,6 +41,12 @@ class BlogPost extends Model
 
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults();
+        return LogOptions::defaults()
+            ->useLogName($this->getTable())
+            ->logAll()
+            ->logExcept(['updated_at'])
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs()
+            ->dontLogIfAttributesChangedOnly(['updated_at']);
     }
 }

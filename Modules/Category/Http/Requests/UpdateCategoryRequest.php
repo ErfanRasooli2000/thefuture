@@ -26,11 +26,4 @@ class UpdateCategoryRequest extends FormRequest
             'parent_id' => 'nullable|exists:categories,id'
         ];
     }
-
-    public function validated($key = null, $default = null)
-    {
-        $data = parent::validated($key, $default);
-        $data['updated_by'] = \Auth::id();
-        return $data;
-    }
 }
