@@ -175,6 +175,7 @@ return [
         \Api\BlogPost\Providers\BlogPostServiceProvider::class,
         \Api\Setting\Providers\SettingServiceProvider::class,
         \Api\Tag\Routes\TagServiceProvider::class,
+        \Api\Favourite\Providers\FavouriteServiceProvider::class,
     ])->toArray(),
 
     /*
