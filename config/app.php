@@ -176,6 +176,7 @@ return [
         \Api\Setting\Providers\SettingServiceProvider::class,
         \Api\Tag\Routes\TagServiceProvider::class,
         \Api\Favourite\Providers\FavouriteServiceProvider::class,
+        \Api\Media\Providers\MediaServiceProvider::class,
     ])->toArray(),
 
     /*

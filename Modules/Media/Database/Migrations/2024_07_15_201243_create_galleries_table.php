@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('favourites', function (Blueprint $table) {
+        Schema::create('galleries', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->string('modelable_type');
-            $table->unsignedBigInteger('modelable_id');
+            $table->unsignedBigInteger('created_by');
 
-            $table->timestamps();
-
-            $table->index(['user_id', 'modelable_type', 'modelable_id']);
+            $table->foreign('created_by')->references('id')->on('users');
         });
     }
 
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('favourites');
+        Schema::dropIfExists('galleries');
     }
 };
