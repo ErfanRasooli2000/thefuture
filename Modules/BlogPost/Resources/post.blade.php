@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="./assets/images/favicon.svg" />
-    <link rel="stylesheet" href="./assets/css/dependencies/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="./assets/css/dependencies/plyr.min.css" />
-    <link rel="stylesheet" href="./assets/css/fonts.css" />
-    <link rel="stylesheet" href="./assets/css/app.css" />
+    <link rel="icon" type="image/svg+xml" href="{{asset('assets/images/favicon.svg')}}" />
+    <link rel="stylesheet" href="{{asset('assets/css/dependencies/swiper-bundle.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/css/dependencies/plyr.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/css/fonts.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/css/app.css')}}" />
     <title>قالب آموزشی نابغه - جزئیات مقاله</title>
 </head>
 
@@ -727,21 +727,17 @@
                     <div class="relative">
                         <!-- article:thumbnail -->
                         <div class="relative z-10">
-                            <img src="./assets/images/courses/01.jpg" class="max-w-full rounded-3xl" alt="..." />
+                            <img src="{{asset($post->getFirstMediaUrl('thumbnail'))}}" class="max-w-full rounded-3xl" alt="..." />
                         </div>
 
                         <div class="-mt-12 pt-12">
                             <div
                                 class="bg-gradient-to-b from-background to-secondary rounded-b-3xl space-y-2 p-5 mx-5">
                                 <!-- article:title -->
-                                <h1 class="font-bold text-xl text-foreground">دوره پروژه محور React و Next</h1>
+                                <h1 class="font-bold text-xl text-foreground">{{$post->title}}</h1>
 
                                 <!-- article:excerpt -->
-                                <p class="text-sm text-muted">
-                                    ساخت وبسایت فروشگاهی با React عنوان دوره پروژه محور react در
-                                    نابغه است که قصد داریم در قالب این دوره react را در قالب پروژه به
-                                    شما آموزش دهیم.
-                                </p>
+                                <p class="text-sm text-muted">{{$post->description}}</p>
                             </div>
                             <div class="space-y-10 py-5">
                                 <!-- article:description -->
@@ -885,7 +881,7 @@
                                                         <div class="flex items-center gap-3">
                                                             <div
                                                                 class="flex-shrink-0 w-10 h-10 rounded-full overflow-hidden">
-                                                                <img src="./assets/images/avatars/01.jpeg"
+                                                                <img src="{{asset('assets/images/avatars/01.jpeg')}}"
                                                                      class="w-full h-full object-cover" alt="..." />
                                                             </div>
                                                             <div class="flex flex-col items-start space-y-1">
@@ -1003,7 +999,7 @@
                         <div class="space-y-3">
                             <div class="flex items-center gap-3">
                                 <div class="flex-shrink-0 w-10 h-10 rounded-full overflow-hidden">
-                                    <img src="./assets/images/avatars/01.jpeg" class="w-full h-full object-cover"
+                                    <img src="{{asset('assets/images/avatars/01.jpeg')}}" class="w-full h-full object-cover"
                                          alt="..." />
                                 </div>
                                 <div class="flex flex-col items-start space-y-1">
@@ -1244,10 +1240,10 @@
 </div>
 
 
-<script src="./assets/js/dependencies/alpinejs.min.js"></script>
-<script src="./assets/js/dependencies/swiper-bundle.min.js"></script>
-<script src="./assets/js/dependencies/plyr.min.js"></script>
-<script src="./assets/js/app.js"></script>
+<script src="{{asset('assets/js/dependencies/alpinejs.min.js')}}"></script>
+<script src="{{asset('assets/js/dependencies/swiper-bundle.min.js')}}"></script>
+<script src="{{asset('assets/js/dependencies/plyr.min.js')}}"></script>
+<script src="{{asset('assets/js/app.js')}}"></script>
 
 <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/default.min.css">
 <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>

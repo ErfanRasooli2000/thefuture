@@ -26,6 +26,8 @@ class BlogPostUpdateRequest extends FormRequest
             'title' => ['required' , 'string'],
             'slug' => ['required','regex:/^[a-zA-Z0-9-_]+$/', Rule::unique('blog_posts', 'slug')->ignore($this->route('blogPost')->id)],
             'content' => ['required' , 'string'],
+            'description' => ['nullable' , 'string'],
+            'thumbnail' => ['nullable', 'image', 'mimes:jpg,png,jpeg,webp', 'max:2048'],
             "categories" => ['required' , 'array'],
             'categories.*' => ['required' , 'exists:categories,id'],
             "tags" => ['required' , 'array'],

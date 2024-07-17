@@ -1,3 +1,3 @@
 <?php
 
-Route::get('/' , [\Api\BlogPost\Http\Controllers\BlogPostWebController::class , 'index']);
+Route::get('/show/{blogPost}' , [\Api\BlogPost\Http\Controllers\BlogPostWebController::class , 'show']);

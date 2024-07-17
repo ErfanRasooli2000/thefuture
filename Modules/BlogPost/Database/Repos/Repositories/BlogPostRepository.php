@@ -44,6 +44,8 @@ class BlogPostRepository implements BlogPostRepositoryInterface
 
             $post->categories()->attach($inputs['categories']);
 
+            $post->addMedia($inputs['thumbnail'])->toMediaCollection('thumbnail');
+
             $tags = [];
 
             foreach ($inputs['tags'] as $tag) {
@@ -70,6 +72,11 @@ class BlogPostRepository implements BlogPostRepositoryInterface
             $post->update($inputs);
 
             $post->categories()->sync($inputs['categories']);
+
+            if ($inputs['thumbnail']) {
+                $post->clearMediaCollection('thumbnail');
+                $post->addMedia($inputs['thumbnail'])->toMediaCollection('thumbnail');
+            }
 
             Tag::where('tagable_type' , BlogPost::class)
                 ->where('tagable_id' , $post->id)

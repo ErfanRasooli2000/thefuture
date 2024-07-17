@@ -13,15 +13,17 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
-
-class BlogPost extends Model
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+class BlogPost extends Model implements HasMedia
 {
-    use HasFactory , SoftDeletes , LogsActivity;
+    use HasFactory , SoftDeletes , LogsActivity , InteractsWithMedia;
 
     protected $fillable = [
         "content",
         "title",
         "slug",
+        "description",
         "created_by",
     ];
     public function creator() :BelongsTo

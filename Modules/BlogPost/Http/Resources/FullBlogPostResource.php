@@ -21,6 +21,7 @@ class FullBlogPostResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'content' => $this->content,
+            'description' => $this->description,
             'slug' => $this->slug,
             "creator" => new SimpleUserResource($this->whenLoaded('creator')),
             'categories' => ForSelectCategoryResource::collection($this->whenLoaded('categories')),

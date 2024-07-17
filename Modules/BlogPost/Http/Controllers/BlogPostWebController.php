@@ -7,9 +7,8 @@ use App\Http\Controllers\Controller;
 
 class BlogPostWebController extends Controller
 {
-    public function index()
+    public function show(BlogPost $post)
     {
-        $post = BlogPost::first();
         return view('blogPost::post' , compact('post'));
     }
 }
