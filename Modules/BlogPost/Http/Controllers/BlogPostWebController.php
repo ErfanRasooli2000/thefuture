@@ -9,6 +9,7 @@ class BlogPostWebController extends Controller
 {
     public function show(BlogPost $post)
     {
+        $post->load('creator');
         return view('blogPost::post' , compact('post'));
     }
 }

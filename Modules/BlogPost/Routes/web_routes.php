@@ -1,3 +1,5 @@
 <?php
 
-Route::get('/show/{blogPost}' , [\Api\BlogPost\Http\Controllers\BlogPostWebController::class , 'show']);
+use Api\BlogPost\Http\Controllers\BlogPostWebController;
+
+Route::get('/show/{blogPost:slug}' , [BlogPostWebController::class , 'show'])->name('blogPost.show');

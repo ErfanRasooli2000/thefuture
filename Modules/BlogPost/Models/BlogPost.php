@@ -26,6 +26,13 @@ class BlogPost extends Model implements HasMedia
         "description",
         "created_by",
     ];
+
+    public function getRouteKeyName()
+    {
+        // This is to ensure the 'slug' key is used for route model binding where specified.
+        return request()->routeIs('blogPost.show') ? 'slug' : 'id';
+    }
+    
     public function creator() :BelongsTo
     {
         return $this->belongsTo(User::class , 'created_by');

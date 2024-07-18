@@ -10,4 +10,13 @@ class UserServiceProvider extends ServiceProvider
     {
         $this->app->register(UserRepositoryServiceProvider::class);
     }
+
+    public function boot()
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+
+        \Route::middleware(['api','auth:sanctum'])
+            ->prefix('api/user')
+            ->group(__DIR__ . '/../Routes/api_routes.php');
+    }
 }

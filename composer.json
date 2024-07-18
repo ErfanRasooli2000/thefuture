@@ -30,7 +30,7 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
             "Api\\": "Modules/",
-            "App\\Traits\\" : "app/Traits"
+            "App\\Traits\\" : "Modules/Base/Traits"
         }
     },
     "autoload-dev": {

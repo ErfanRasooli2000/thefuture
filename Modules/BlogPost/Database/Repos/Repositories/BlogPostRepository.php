@@ -73,7 +73,7 @@ class BlogPostRepository implements BlogPostRepositoryInterface
 
             $post->categories()->sync($inputs['categories']);
 
-            if ($inputs['thumbnail']) {
+            if (isset($inputs['thumbnail']) && $inputs['thumbnail']) {
                 $post->clearMediaCollection('thumbnail');
                 $post->addMedia($inputs['thumbnail'])->toMediaCollection('thumbnail');
             }

@@ -24,6 +24,7 @@ class SimpleBlogPostResource extends JsonResource
             "creator" => new SimpleUserResource($this->whenLoaded('creator')),
             'categories' => ForSelectCategoryResource::collection($this->whenLoaded('categories')),
             'created_at' => verta($this->created_at)->format('Y-m-d H:i:s'),
+            'url' => route('blogPost.show' , ['blogPost' => $this])
         ];
     }
 }

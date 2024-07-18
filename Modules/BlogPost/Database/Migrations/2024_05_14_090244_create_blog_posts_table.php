@@ -22,6 +22,7 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->foreign('created_by')->references('id')->on('users')->nullOnDelete();
+            $table->index('slug');
         });
     }
 
