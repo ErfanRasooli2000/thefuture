@@ -19,4 +19,9 @@ class Client extends Authenticatable
     {
         return $this->morphMany(Otp::class , 'otp' , 'causer_type' , 'causer_id');
     }
+
+    public function profile()
+    {
+        return $this->hasOne(ClientProfile::class , 'client_id' , 'id');
+    }
 }

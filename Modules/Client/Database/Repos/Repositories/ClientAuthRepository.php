@@ -16,17 +16,21 @@ class ClientAuthRepository implements ClientAuthRepositoryInterface
 
     public function loginSendCode(array $inputs): void
     {
-        $client = $this->model
-            ->newQuery()
-            ->firstOrCreate(['mobile'=>$inputs['mobile']]);
+        \DB::transaction(function () use ($inputs){
+            $client = $this->model
+                ->newQuery()
+                ->firstOrCreate(['mobile'=>$inputs['mobile']]);
 
-        $code = mt_rand(100000,999999);
+            $client->profile()->create();
 
-        $client->otp()->create([
-            'code' => $code,
-            'expires_at' => now()->addMinutes(3),
-            'type' => OtpTypeEnum::Client_Login->value,
-        ]);
+            $code = mt_rand(100000,999999);
+
+            $client->otp()->create([
+                'code' => $code,
+                'expires_at' => now()->addMinutes(3),
+                'type' => OtpTypeEnum::Client_Login->value,
+            ]);
+        });
 
 //        $result = SmsFacade::single($client->mobile , "کد ورود به سیستم: ".$code , null);
 $result=true;
