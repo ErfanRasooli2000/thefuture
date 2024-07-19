@@ -177,6 +177,9 @@ return [
         \Api\Tag\Routes\TagServiceProvider::class,
         \Api\Favourite\Providers\FavouriteServiceProvider::class,
         \Api\Media\Providers\MediaServiceProvider::class,
+        \Api\Client\Providers\ClientServiceProvider::class,
+        \Api\Notification\Providers\NotificationServiceProvider::class,
+        \Api\Pages\Providers\PagesServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -191,7 +194,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
+        "SmsFacade" => \Api\Notification\Services\Facades\SmsFacade::class,
     ])->toArray(),
 
 ];

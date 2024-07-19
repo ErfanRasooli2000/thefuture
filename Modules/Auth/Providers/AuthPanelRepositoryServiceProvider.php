@@ -14,10 +14,4 @@ class AuthPanelRepositoryServiceProvider extends ServiceProvider
         $this->app->bind(AuthPanelRepositoryInterface::class , AuthPanelRepository::class);
     }
 
-    public function boot()
-    {
-        Route::prefix('/api/auth/panel')
-            ->middleware(['api'])
-            ->group(__DIR__ . '/../Routes/api_routes.php');
-    }
 }

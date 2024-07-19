@@ -40,6 +40,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        // New guard for clients
+        'client' => [
+            'driver' => 'session',
+            'provider' => 'clients',
+        ],
     ],
 
     /*
@@ -63,6 +69,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => \Api\User\Models\User::class,
+        ],
+
+        'clients' => [
+            'driver' => 'eloquent',
+            'model' => \Api\Client\Models\Client::class,
         ],
 
         // 'users' => [
