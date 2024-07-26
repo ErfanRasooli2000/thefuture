@@ -101,22 +101,23 @@
                                         <div class="font-black text-foreground">اطلاعات حساب</div>
                                     </div>
 
-                                    <form action="#" class="space-y-5">
+                                    <form action="{{route('client.profile.update')}}" method="post" class="space-y-5">
+                                        @csrf
                                         <div class="grid sm:grid-cols-2 gap-5">
                                             <div class="space-y-1">
                                                 <label for="fullname" class="font-medium text-xs text-muted">نام
                                                     و
                                                     نام خانوادگی (فارسی)</label>
-                                                <input type="text" id="fullname" value="{{$client->name}}"
+                                                <input type="text" name="fullname" id="fullname" value="{{$client->name}}"
                                                        class="form-input w-full h-11 !ring-0 !ring-offset-0 bg-secondary border-border focus:border-border rounded-xl text-sm text-foreground px-5" />
                                             </div>
                                             <div class="space-y-1">
                                                 <label for="email"
                                                        class="font-medium text-xs text-muted">ایمیل</label>
-                                                <input type="text" id="email" dir="ltr"  value="{{$client->email}}"
+                                                <input type="text" name="email" id="email" dir="ltr"  value="{{$client->email}}"
                                                        class="form-input w-full h-11 !ring-0 !ring-offset-0 bg-secondary border-border focus:border-border rounded-xl text-sm text-foreground px-5" />
                                                 <div class="font-medium text-xs text-muted">
-                                                    در حال حاضر ایمیل قابل تغییر نمیباشد.
+                                                    ایمیل خود را وارد کنید
                                                 </div>
                                             </div>
                                         </div>
@@ -136,9 +137,23 @@
                                                 <div class="flex flex-col space-y-2">
                                                     <!-- form:select -->
                                                     <div class="w-full relative"
-                                                         x-data="{ open: false, selectedOption: 'انتخاب سال', selectedValue: '' }">
+                                                         x-data="{
+                                                             open: false,
+                                                             selectedOption: 'انتخاب سال',
+                                                             selectedValue: '',
+                                                             years: Array.from({length: 100}, (_, i) => (new Date().getFullYear() - i).toString()),
+                                                             init() {
+                                                                 const initialValue = this.$el.getAttribute('data-initial-value');
+                                                                 if (initialValue) {
+                                                                     this.selectedOption = initialValue;
+                                                                     this.selectedValue = initialValue;
+                                                                 }
+                                                             }
+                                                         }"
+                                                         x-init="init()"
+                                                         data-initial-value="{{ $client->profile->birth_year }}">
                                                         <!-- The selected value is stored in this input. -->
-                                                        <input type="hidden" x-model="selectedValue" />
+                                                        <input type="hidden" value="{{$client->profile->birth_year}}" name="birthYear" x-model="selectedValue" />
 
                                                         <!-- form:select:button -->
                                                         <button type="button" x-on:click="open = !open"
@@ -181,9 +196,25 @@
                                                 <div class="flex flex-col space-y-2">
                                                     <!-- form:select -->
                                                     <div class="w-full relative"
-                                                         x-data="{ open: false, selectedOption: 'انتخاب ماه', selectedValue: '', options: ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'] }">
+                                                         x-data="{
+                                                             open: false,
+                                                             selectedOption: 'انتخاب ماه',
+                                                             selectedValue: '',
+                                                             options: ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'],
+                                                             init() {
+                                                                 const initialValue = this.$el.getAttribute('data-initial-value');
+                                                                 if (initialValue) {
+                                                                     const index = parseInt(initialValue) - 1;
+                                                                     this.selectedOption = this.options[index];
+                                                                     this.selectedValue = initialValue;
+                                                                 }
+                                                             }
+                                                         }"
+                                                         x-init="init()"
+                                                         data-initial-value="{{ $client->profile->birth_month }}">
+
                                                         <!-- The selected value is stored in this input. -->
-                                                        <input type="hidden" x-model="selectedValue" />
+                                                        <input type="hidden" value="{{$client->profile->birth_month}}"  name="birthMonth" x-model="selectedValue" />
 
                                                         <!-- form:select:button -->
                                                         <button type="button" x-on:click="open = !open"
@@ -226,9 +257,22 @@
                                                 <div class="flex flex-col space-y-2">
                                                     <!-- form:select -->
                                                     <div class="w-full relative"
-                                                         x-data="{ open: false, selectedOption: 'انتخاب روز', selectedValue: '' }">
-                                                        <!-- The selected value is stored in this input. -->
-                                                        <input type="hidden" x-model="selectedValue" />
+                                                         x-data="{
+                                                             open: false,
+                                                             selectedOption: 'انتخاب روز',
+                                                             selectedValue: '',
+                                                             days: Array.from({ length: 31 }, (_, i) => (i + 1).toString()),
+                                                             init() {
+                                                                 const initialValue = this.$el.getAttribute('data-initial-value');
+                                                                 if (initialValue) {
+                                                                     this.selectedOption = initialValue;
+                                                                     this.selectedValue = initialValue;
+                                                                 }
+                                                             }
+                                                         }"
+                                                         x-init="init()"
+                                                         data-initial-value="{{ $client->profile->birth_day }}">
+                                                        <input type="hidden" value="{{$client->profile->birth_day}}" name="birthDay" x-model="selectedValue" />
 
                                                         <!-- form:select:button -->
                                                         <button type="button" x-on:click="open = !open"
@@ -271,10 +315,8 @@
                                         <div class="space-y-1">
                                             <label for="bio" class="font-medium text-xs text-muted">درباره
                                                 من</label>
-                                            <textarea rows="5" id="bio"
-                                                      class="form-textarea w-full !ring-0 !ring-offset-0 bg-secondary border-border focus:border-border rounded-xl text-sm text-foreground px-5">
-                                                 {{$client->profile->biography}}
-                                            </textarea>
+                                            <textarea rows="5" id="bio" name="biography"
+                                                      class="form-textarea w-full !ring-0 !ring-offset-0 bg-secondary border-border focus:border-border rounded-xl text-sm text-foreground px-5">{{$client->profile->biography}}</textarea>
                                         </div>
                                         <div class="flex items-center gap-3">
                                             <div class="flex items-center gap-1">
@@ -287,25 +329,25 @@
                                             <div class="space-y-1">
                                                 <label for="website"
                                                        class="font-medium text-xs text-muted">وبسایت</label>
-                                                <input type="text" dir="ltr" id="website"  value="{{$client->profile->website}}"
+                                                <input type="text" dir="ltr" name="website" id="website"  value="{{$client->profile->website}}"
                                                        class="form-input w-full h-11 !ring-0 !ring-offset-0 bg-secondary border-border focus:border-border rounded-xl text-sm text-foreground px-5" />
                                             </div>
                                             <div class="space-y-1">
                                                 <label for="github" class="font-medium text-xs text-muted">گیت
                                                     هاب</label>
-                                                <input type="text" dir="ltr" id="github"  value="{{$client->profile->github}}"
+                                                <input type="text" dir="ltr" name="github" id="github"  value="{{$client->profile->github}}"
                                                        class="form-input w-full h-11 !ring-0 !ring-offset-0 bg-secondary border-border focus:border-border rounded-xl text-sm text-foreground px-5" />
                                             </div>
                                             <div class="space-y-1">
                                                 <label for="linkedin"
                                                        class="font-medium text-xs text-muted">لینکدین</label>
-                                                <input type="text" dir="ltr" id="linkedin"  value="{{$client->profile->linkedin}}"
+                                                <input type="text" dir="ltr" name="linkedin" id="linkedin"  value="{{$client->profile->linkedin}}"
                                                        class="form-input w-full h-11 !ring-0 !ring-offset-0 bg-secondary border-border focus:border-border rounded-xl text-sm text-foreground px-5" />
                                             </div>
                                             <div class="space-y-1">
                                                 <label for="telegram"
                                                        class="font-medium text-xs text-muted">تلگرام</label>
-                                                <input type="text" dir="ltr" id="telegram"  value="{{$client->profile->telegram}}"
+                                                <input type="text" dir="ltr" name="telegram" id="telegram"  value="{{$client->profile->telegram}}"
                                                        class="form-input w-full h-11 !ring-0 !ring-offset-0 bg-secondary border-border focus:border-border rounded-xl text-sm text-foreground px-5" />
                                             </div>
                                         </div>

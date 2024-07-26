@@ -13,6 +13,7 @@ class Client extends Authenticatable
 
     protected $fillable = [
         'mobile',
+        'email',
     ];
 
     public function otp()

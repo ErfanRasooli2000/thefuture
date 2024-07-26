@@ -2,7 +2,9 @@
 
 namespace Api\Client\Http\Controllers;
 
+use Api\Client\Http\Requests\ClientProfileRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
@@ -54,6 +56,30 @@ class ClientController extends Controller
         return view('client::profile.edit' , compact('client'));
     }
 
+    public function updateProfile(ClientProfileRequest $request)
+    {
+        $inputs = $request->validated();
+        $client = $this->getClient();
+
+        $client->update([
+            'name' => $inputs['fullname'],
+            'email' => $inputs['email'],
+        ]);
+
+        $client->profile()->update([
+            'birth_year' => $inputs['birthYear'],
+            'birth_month' => $inputs['birthMonth'],
+            'birth_day' => $inputs['birthDay'],
+            'biography' => $inputs['biography'],
+            'website' => $inputs['website'],
+            'github' => $inputs['github'],
+            'telegram' => $inputs['telegram'],
+            'linkedin' => $inputs['linkedin'],
+        ]);
+
+        return redirect()->back();
+    }
+
     private function getClient()
     {
         $client = Auth::guard('client')->user();
@@ -62,8 +88,3 @@ class ClientController extends Controller
         return $client;
     }
 }
-
-//favourites
-//payments
-//comments
-//notifications
