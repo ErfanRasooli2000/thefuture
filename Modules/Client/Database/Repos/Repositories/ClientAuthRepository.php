@@ -17,11 +17,20 @@ class ClientAuthRepository implements ClientAuthRepositoryInterface
     public function loginSendCode(array $inputs): void
     {
         \DB::transaction(function () use ($inputs){
+
             $client = $this->model
                 ->newQuery()
-                ->firstOrCreate(['mobile'=>$inputs['mobile']]);
+                ->where('mobile' , $inputs['mobile'])
+                ->first();
 
-            $client->profile()->create();
+            if (is_null($client))
+            {
+                $client = $this->model
+                    ->newQuery()
+                    ->create(['mobile'=>$inputs['mobile']]);
+
+                $client->profile()->create();
+            }
 
             $code = mt_rand(100000,999999);
 

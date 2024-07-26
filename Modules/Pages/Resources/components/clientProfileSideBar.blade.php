@@ -1,3 +1,10 @@
+<?php
+
+    $selectedClass = "w-full h-11 inline-flex items-center text-right gap-3 bg-primary rounded-full text-primary-foreground px-4";
+    $unSelectedClass = "w-full h-11 inline-flex items-center text-right gap-3 bg-background rounded-full text-muted transition-colors hover:bg-primary hover:text-primary-foreground px-4";
+
+?>
+
 <div class="lg:col-span-3 md:col-span-4 md:sticky md:top-24">
     <!-- user:info -->
     <div class="flex items-center gap-5 mb-5">
@@ -18,8 +25,8 @@
     <!-- user:menus -->
     <ul class="flex flex-col space-y-3 bg-secondary rounded-2xl p-5">
         <li>
-            <a href="./profile.html"
-               class="w-full h-11 inline-flex items-center text-right gap-3 bg-background rounded-full text-muted transition-colors hover:bg-primary hover:text-primary-foreground px-4">
+            <a href="{{route('client.profile.dashboard')}}"
+               class="{{Route::currentRouteName() == 'client.profile.dashboard' ? $selectedClass : $unSelectedClass}}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                      stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -29,8 +36,8 @@
             </a>
         </li>
         <li>
-            <a href="./profile-courses.html"
-               class="w-full h-11 inline-flex items-center text-right gap-3 bg-background rounded-full text-muted transition-colors hover:bg-primary hover:text-primary-foreground px-4">
+            <a href="{{route('client.profile.courses')}}"
+               class="{{Route::currentRouteName() == 'client.profile.courses' ? $selectedClass : $unSelectedClass}}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                      stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -41,8 +48,8 @@
             </a>
         </li>
         <li>
-            <a href="./profile-wishlist.html"
-               class="w-full h-11 inline-flex items-center text-right gap-3 bg-background rounded-full text-muted transition-colors hover:bg-primary hover:text-primary-foreground px-4">
+            <a href="{{route('client.profile.favourites')}}"
+               class="{{Route::currentRouteName() == 'client.profile.favourites' ? $selectedClass : $unSelectedClass}}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                      stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -53,8 +60,8 @@
             </a>
         </li>
         <li>
-            <a href="./profile-financial.html"
-               class="w-full h-11 inline-flex items-center text-right gap-3 bg-background rounded-full text-muted transition-colors hover:bg-primary hover:text-primary-foreground px-4">
+            <a href="{{route('client.profile.payments')}}"
+               class="{{Route::currentRouteName() == 'client.profile.payments' ? $selectedClass : $unSelectedClass}}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                      stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -65,8 +72,8 @@
             </a>
         </li>
         <li>
-            <a href="./profile-comments.html"
-               class="w-full h-11 inline-flex items-center text-right gap-3 bg-background rounded-full text-muted transition-colors hover:bg-primary hover:text-primary-foreground px-4">
+            <a href="{{route('client.profile.comments')}}"
+               class="{{Route::currentRouteName() == 'client.profile.comments' ? $selectedClass : $unSelectedClass}}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                      stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -76,8 +83,8 @@
             </a>
         </li>
         <li>
-            <a href="./profile-notifications.html"
-               class="w-full h-11 inline-flex items-center text-right gap-3 bg-background rounded-full text-muted transition-colors hover:bg-primary hover:text-primary-foreground px-4">
+            <a href="{{route('client.profile.notifications')}}"
+               class="{{Route::currentRouteName() == 'client.profile.notifications' ? $selectedClass : $unSelectedClass}}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                      stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -88,8 +95,8 @@
             </a>
         </li>
         <li>
-            <a href="./profile-edit.html"
-               class="w-full h-11 inline-flex items-center text-right gap-3 bg-primary rounded-full text-primary-foreground px-4">
+            <a href="{{route('client.profile.edit')}}"
+               class="{{Route::currentRouteName() == 'client.profile.edit' ? $selectedClass : $unSelectedClass}}">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                      class="w-5 h-5">
                     <path

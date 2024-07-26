@@ -33,7 +33,7 @@
                         </svg>
                     </button>
                     <!-- end offcanvas:button -->
-                    <a href="./home.html" class="inline-flex items-center gap-2 text-primary">
+                    <a href="{{route('home')}}" class="inline-flex items-center gap-2 text-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                              class="w-6 h-6">
                             <path
@@ -309,55 +309,10 @@
                     <!-- menu -->
                     <ul class="flex items-center gap-5">
                         <li>
-                            <a href="./blog.html"
+                            <a href="{{route('blogPost.index')}}"
                                class="inline-flex text-muted transition-colors hover:text-foreground">
                                 <span class="font-semibold text-sm">مقالات آموزشی</span>
                             </a>
-                        </li>
-                        <li class="relative group/submenu">
-                            <a href="#"
-                               class="inline-flex items-center gap-1 text-muted transition-colors hover:text-foreground">
-                                <span class="font-semibold text-sm">لینکهای مفید</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                     stroke-width="1.5" stroke="currentColor"
-                                     class="w-5 h-5 transition-transform group-hover/submenu:rotate-180">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                          d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                </svg>
-                            </a>
-                            <ul
-                                class="absolute top-full right-0 w-56 bg-background border border-border rounded-xl shadow-2xl shadow-black/5 opacity-0 invisible transition-all group-hover/submenu:opacity-100 group-hover/submenu:visible p-3 mt-2">
-                                <li>
-                                    <a href="./profile.html"
-                                       class="flex items-center gap-2 w-full text-foreground transition-colors hover:text-primary px-3 py-2">
-                                        <span class="font-semibold text-xs">مشاهده پروفایل</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="./profile-courses.html"
-                                       class="flex items-center gap-2 w-full text-foreground transition-colors hover:text-primary px-3 py-2">
-                                        <span class="font-semibold text-xs">دوره ها</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="./profile-financial.html"
-                                       class="flex items-center gap-2 w-full text-foreground transition-colors hover:text-primary px-3 py-2">
-                                        <span class="font-semibold text-xs">مالی</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="./profile-comments.html"
-                                       class="flex items-center gap-2 w-full text-foreground transition-colors hover:text-primary px-3 py-2">
-                                        <span class="font-semibold text-xs">پرسش و دیدگاه ها</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{route('client.logout')}}"
-                                       class="flex items-center gap-2 w-full text-red-500 transition-colors hover:text-red-700 px-3 py-2">
-                                        <span class="font-semibold text-xs">خروج از حساب</span>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                     </ul>
                     <!-- end menu -->
@@ -411,7 +366,7 @@
                                     class="relative inline-flex items-center justify-center rounded-full h-5 w-5 bg-primary text-primary-foreground font-bold text-xs">2</span>
                             </span>
                     </a>
-
+                @if(Auth::guard('client')->check())
                     <!-- user:dropdown -->
                     <div class="relative" x-data="{ isOpen: false }">
                         <button class="flex items-center sm:gap-3 gap-1" x-on:click="isOpen = !isOpen">
@@ -440,7 +395,7 @@
                              x-on:click.outside="isOpen = false">
                             <div
                                 class="w-56 bg-background border border-border rounded-xl shadow-2xl shadow-black/5 p-3">
-                                <a href="./profile.html"
+                                <a href="{{route('client.profile.dashboard')}}"
                                    class="flex items-center gap-2 w-full text-foreground transition-colors hover:text-primary px-3 py-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                          stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -489,18 +444,20 @@
                         </div>
                     </div>
                     <!-- end user:dropdown -->
+                @else
+                        <!-- login-register:button -->
+                        <a href="{{route('client.loginPage')}}"
+                    class="inline-flex items-center justify-center gap-1 h-10 bg-primary rounded-full text-primary-foreground transition-all hover:opacity-80 px-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                        <path fill-rule="evenodd"
+                            d="M7.5 3.75A1.5 1.5 0 0 0 6 5.25v13.5a1.5 1.5 0 0 0 1.5 1.5h6a1.5 1.5 0 0 0 1.5-1.5V15a.75.75 0 0 1 1.5 0v3.75a3 3 0 0 1-3 3h-6a3 3 0 0 1-3-3V5.25a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3V9A.75.75 0 0 1 15 9V5.25a1.5 1.5 0 0 0-1.5-1.5h-6Zm5.03 4.72a.75.75 0 0 1 0 1.06l-1.72 1.72h10.94a.75.75 0 0 1 0 1.5H10.81l1.72 1.72a.75.75 0 1 1-1.06 1.06l-3-3a.75.75 0 0 1 0-1.06l3-3a.75.75 0 0 1 1.06 0Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <span class="font-semibold text-sm">حساب کاربری</span>
+                </a>
+                        <!-- end login-register:button -->
+                @endif
 
-                    <!-- login-register:button -->
-                    <!-- <a href="./login-register.html"
-                class="inline-flex items-center justify-center gap-1 h-10 bg-primary rounded-full text-primary-foreground transition-all hover:opacity-80 px-4">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                    <path fill-rule="evenodd"
-                        d="M7.5 3.75A1.5 1.5 0 0 0 6 5.25v13.5a1.5 1.5 0 0 0 1.5 1.5h6a1.5 1.5 0 0 0 1.5-1.5V15a.75.75 0 0 1 1.5 0v3.75a3 3 0 0 1-3 3h-6a3 3 0 0 1-3-3V5.25a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3V9A.75.75 0 0 1 15 9V5.25a1.5 1.5 0 0 0-1.5-1.5h-6Zm5.03 4.72a.75.75 0 0 1 0 1.06l-1.72 1.72h10.94a.75.75 0 0 1 0 1.5H10.81l1.72 1.72a.75.75 0 1 1-1.06 1.06l-3-3a.75.75 0 0 1 0-1.06l3-3a.75.75 0 0 1 1.06 0Z"
-                        clip-rule="evenodd" />
-                </svg>
-                <span class="font-semibold text-sm">حساب کاربری</span>
-            </a> -->
-                    <!-- end login-register:button -->
 
                 </div>
             </div>
@@ -755,7 +712,7 @@
                             </span>
                     </a>
                 </div>
-                <div class="md:w-7/12 w-full">
+                <div style="display: none" class="md:w-7/12 w-full">
                     <div class="flex flex-wrap items-center gap-10">
                         <div class="flex items-center gap-5">
                                 <span

@@ -99,8 +99,7 @@
                                     <div class="space-y-3">
                                         <div
                                             class="bg-background border border-border rounded-3xl space-y-3 p-5">
-                                            <div
-                                                class="flex sm:flex-nowrap flex-wrap sm:flex-row flex-col sm:items-center sm:justify-between gap-5 border-b border-border pb-3">
+                                            <div class="flex sm:flex-nowrap flex-wrap sm:flex-row flex-col sm:items-center sm:justify-between gap-5 border-b border-border pb-3">
                                                 <div class="flex items-center gap-3">
                                                     <div
                                                         class="flex-shrink-0 w-10 h-10 rounded-full overflow-hidden">
@@ -152,14 +151,11 @@
                                         </div>
 
                                         <!-- article:comment replies -->
-                                        <div
-                                            class="relative before:content-[''] before:absolute before:-top-3 before:right-8 before:w-px before:h-[calc(100%-24px)] before:bg-border after:content-[''] after:absolute after:bottom-9 after:right-8 after:w-8 after:h-px after:bg-border space-y-3 pr-16">
+                                        <div class="relative before:content-[''] before:absolute before:-top-3 before:right-8 before:w-px before:h-[calc(100%-24px)] before:bg-border after:content-[''] after:absolute after:bottom-9 after:right-8 after:w-8 after:h-px after:bg-border space-y-3 pr-16">
 
                                             <!-- article:comment reply -->
-                                            <div
-                                                class="bg-background border border-border rounded-3xl space-y-3 p-5">
-                                                <div
-                                                    class="flex sm:flex-nowrap flex-wrap sm:flex-row flex-col sm:items-center sm:justify-between gap-5 border-b border-border pb-3">
+                                            <div class="bg-background border border-border rounded-3xl space-y-3 p-5">
+                                                <div class="flex sm:flex-nowrap flex-wrap sm:flex-row flex-col sm:items-center sm:justify-between gap-5 border-b border-border pb-3">
                                                     <div class="flex items-center gap-3">
                                                         <div
                                                             class="flex-shrink-0 w-10 h-10 rounded-full overflow-hidden">
@@ -212,8 +208,7 @@
                                             <!-- article:comment reply -->
                                             <div
                                                 class="bg-background border border-border rounded-3xl space-y-3 p-5">
-                                                <div
-                                                    class="flex sm:flex-nowrap flex-wrap sm:flex-row flex-col sm:items-center sm:justify-between gap-5 border-b border-border pb-3">
+                                                <div class="flex sm:flex-nowrap flex-wrap sm:flex-row flex-col sm:items-center sm:justify-between gap-5 border-b border-border pb-3">
                                                     <div class="flex items-center gap-3">
                                                         <div
                                                             class="flex-shrink-0 w-10 h-10 rounded-full overflow-hidden">
@@ -304,4 +299,12 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('extraFooter')
+    <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/default.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/php.min.js"></script>
+    <script>hljs.highlightAll();</script>
 @endsection
