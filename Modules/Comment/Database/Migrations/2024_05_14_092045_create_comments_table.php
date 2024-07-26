@@ -13,7 +13,16 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
+            $table->text('text');
+            $table->unsignedBigInteger('answer_to')->nullable();
+            $table->boolean('active')->default(false);
+            $table->unsignedBigInteger('created_by');
+            $table->string('creator_type');
+            $table->unsignedBigInteger('modelable_id');
+            $table->string('modelable_type');
             $table->timestamps();
+
+            $table->foreign('answer_to')->references('id')->on('comments')->nullOnDelete();
         });
     }
 
