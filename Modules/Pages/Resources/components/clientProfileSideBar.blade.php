@@ -106,7 +106,7 @@
             </a>
         </li>
         <li>
-            <button type="button"
+            <a href="{{route('client.logout')}}" type="button"
                     class="w-full h-11 inline-flex items-center text-right gap-3 bg-background rounded-full text-muted transition-colors hover:bg-primary hover:text-primary-foreground px-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                      stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -115,7 +115,7 @@
                     </path>
                 </svg>
                 <span class="font-semibold text-xs">خروج از حساب</span>
-            </button>
+            </a>
         </li>
     </ul>
     <!-- end user:menus -->

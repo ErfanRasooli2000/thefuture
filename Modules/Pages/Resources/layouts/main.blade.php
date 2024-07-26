@@ -404,7 +404,7 @@
                                     </svg>
                                     <span class="font-semibold text-xs">مشاهده پروفایل</span>
                                 </a>
-                                <a href="./profile-courses.html"
+                                <a href="{{route('client.profile.courses')}}"
                                    class="flex items-center gap-2 w-full text-foreground transition-colors hover:text-primary px-3 py-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                          stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -413,7 +413,7 @@
                                     </svg>
                                     <span class="font-semibold text-xs">دوره ها</span>
                                 </a>
-                                <a href="./profile-financial.html"
+                                <a href="{{route('client.profile.payments')}}"
                                    class="flex items-center gap-2 w-full text-foreground transition-colors hover:text-primary px-3 py-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                          stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -422,7 +422,7 @@
                                     </svg>
                                     <span class="font-semibold text-xs">مالی</span>
                                 </a>
-                                <a href="./profile-comments.html"
+                                <a href="{{route('client.profile.comments')}}"
                                    class="flex items-center gap-2 w-full text-foreground transition-colors hover:text-primary px-3 py-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                          stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
