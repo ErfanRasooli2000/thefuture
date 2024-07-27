@@ -24,5 +24,19 @@ class CommentSeeder extends Seeder
                 'modelable_type' => BlogPost::class,
             ]);
         }
+
+        for ($i = 1; $i <= 110; $i++) {
+            $replyTo = Comment::inRandomOrder()->first();
+
+            Comment::create([
+                'text' => fake()->text(40),
+                'active' => fake()->boolean(),
+                'answer_to' => $replyTo->id,
+                'created_by' => fake()->numberBetween(1,10),
+                'creator_type' => Client::class,
+                'modelable_id' => $replyTo->modelable_id,
+                'modelable_type' => BlogPost::class,
+            ]);
+        }
     }
 }

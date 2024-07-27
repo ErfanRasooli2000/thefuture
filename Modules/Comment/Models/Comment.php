@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
+
+    public function creator()
+    {
+        return $this->morphTo(__FUNCTION__, 'creator_type', 'created_by');
+    }
 }
