@@ -3,6 +3,7 @@
 namespace Api\BlogPost\Models;
 
 use Api\Category\Models\Category;
+use Api\Comment\Models\Comment;
 use Api\Tag\Models\Tag;
 use Api\User\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -32,7 +33,7 @@ class BlogPost extends Model implements HasMedia
         // This is to ensure the 'slug' key is used for route model binding where specified.
         return request()->routeIs('blogPost.show') ? 'slug' : 'id';
     }
-    
+
     public function creator() :BelongsTo
     {
         return $this->belongsTo(User::class , 'created_by');
@@ -46,6 +47,11 @@ class BlogPost extends Model implements HasMedia
     public function tags() :MorphMany
     {
         return $this->morphMany(Tag::class, 'tagable');
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class , 'modelable');
     }
 
     public function getActivitylogOptions(): LogOptions

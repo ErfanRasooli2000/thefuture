@@ -13,13 +13,15 @@ class BlogPostSeeder extends Seeder
     public function run(): void
     {
         for ($i = 0; $i < 10; $i++) {
-            BlogPost::create([
+            $post = BlogPost::create([
                 'title' => fake()->title,
                 'description' => fake()->text(50),
                 'content' => fake()->text(1350),
                 'slug' => fake()->firstName,
                 'created_by' => 1
             ]);
+
+            $post->addMediaFromUrl('http://localhost:8000/storage/1/MainAfter.webp')->toMediaCollection('thumbnail');
         }
     }
 }
