@@ -16,11 +16,13 @@ class BlogPostWebController extends Controller
 
     public function show(BlogPost $post)
     {
+        $user = \Auth::guard('client')->check() ? \Auth::guard('client')->user() : null;
+
         $post->load(['creator' , 'comments.creator']);
 
         $comments = $this->sortComments($post->comments);
 
-        return view('blogPost::post' , compact('post' , 'comments'));
+        return view('blogPost::post' , compact('post' , 'comments' , 'user'));
     }
 
     private function sortComments($comments , $parent = null)
