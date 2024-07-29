@@ -13,10 +13,11 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         $data = [
-            ['name' => 'وب' , 'parent_id' => null],
-            ['name' => 'بازی' , 'parent_id' => null],
-            ['name' => 'php' , 'parent_id' => 1],
-            ['name' => 'c#' , 'parent_id' => 2],
+            ['name' => 'php' , 'parent_id' => null],
+            ['name' => 'laravel' , 'parent_id' => null],
+            ['name' => 'mysql' , 'parent_id' => null],
+            ['name' => 'mongodb' , 'parent_id' => null],
+            ['name' => 'الگوریتم' , 'parent_id' => null],
         ];
 
         Category::insert($data);
