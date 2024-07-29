@@ -9,7 +9,8 @@ class BlogPostWebController extends Controller
 {
     public function index()
     {
-        $posts = BlogPost::all();
+        $posts = BlogPost::with(['categories' , 'creator'])->get();
+
         return view('blogPost::index', compact('posts'));
     }
 

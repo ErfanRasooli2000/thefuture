@@ -18,6 +18,7 @@ return new class extends Migration
             $table->longText('content');
             $table->string('slug')->unique();
             $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedTinyInteger('time_to_read')->default(0);
             $table->timestamps();
             $table->softDeletes();
 

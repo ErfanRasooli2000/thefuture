@@ -25,6 +25,7 @@ class BlogPost extends Model implements HasMedia
         "title",
         "slug",
         "description",
+        "time_to_read",
         "created_by",
     ];
 
