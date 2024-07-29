@@ -9,6 +9,8 @@ class Comment extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function creator()
     {
         return $this->morphTo(__FUNCTION__, 'creator_type', 'created_by');
