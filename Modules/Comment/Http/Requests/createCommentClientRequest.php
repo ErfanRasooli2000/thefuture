@@ -26,6 +26,7 @@ class createCommentClientRequest extends FormRequest
         return [
             'text' => 'required|string',
             'post_id' => 'required|exists:blog_posts,id',
+            'answer_to' => 'nullable|exists:comments,id',
         ];
     }
 

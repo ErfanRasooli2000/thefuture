@@ -20,7 +20,7 @@ class BlogPostWebController extends Controller
 
         $post->load(['creator' , 'comments.creator']);
 
-        $comments = $this->sortComments($post->comments);
+        $comments = $this->sortComments($post->comments->where('active' , 1));
 
         return view('blogPost::post' , compact('post' , 'comments' , 'user'));
     }
