@@ -4,6 +4,7 @@ namespace Api\BlogPost\Http\Controllers;
 
 use Api\BlogPost\Models\BlogPost;
 use App\Http\Controllers\Controller;
+use Modules\Comment\Enums\CommentStatusEnum;
 
 class BlogPostWebController extends Controller
 {
@@ -20,7 +21,7 @@ class BlogPostWebController extends Controller
 
         $post->load(['creator' , 'comments.creator']);
 
-        $comments = $this->sortComments($post->comments->where('active' , 1));
+        $comments = $this->sortComments($post->comments->where('status' , CommentStatusEnum::Approved->value));
 
         return view('blogPost::post' , compact('post' , 'comments' , 'user'));
     }

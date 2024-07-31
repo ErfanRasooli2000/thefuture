@@ -4,11 +4,15 @@ namespace Api\Comment\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Comment\Enums\CommentStatusEnum;
 
 class Comment extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'status' => CommentStatusEnum::class,
+    ];
     protected $guarded = [];
 
     public function creator()
