@@ -19,4 +19,9 @@ class Comment extends Model
     {
         return $this->morphTo(__FUNCTION__, 'creator_type', 'created_by');
     }
+
+    public function modelable()
+    {
+        return $this->morphTo(__FUNCTION__ , 'modelable_type', 'modelable_id');
+    }
 }

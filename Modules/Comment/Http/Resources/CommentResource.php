@@ -2,6 +2,7 @@
 
 namespace Api\Comment\Http\Resources;
 
+use Api\BlogPost\Http\Resources\SimpleBlogPostResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -19,6 +20,9 @@ class CommentResource extends JsonResource
             'text' => $this->text,
             'status' => $this->status,
             'answer_to' => $this->answer_to,
+            'creator' => $this->whenLoaded($this->creator),
+            'post' => new SimpleBlogPostResource($this->whenLoaded($this->modelable)),
+
         ];
     }
 }

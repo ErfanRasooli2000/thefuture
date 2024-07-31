@@ -11,7 +11,7 @@ class CommentRepository implements CommentRepositoryInterface
 {
     public function getAllWithPagination(Request $request) :Collection
     {
-        return collect();
+        return Comment::with('creator')->get();
     }
 
     public function changeStatus(Comment $comment , $inputs): bool
