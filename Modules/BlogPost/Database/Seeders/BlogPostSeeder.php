@@ -41,7 +41,5 @@ class BlogPostSeeder extends Seeder
                 ];
             }
         }
-
-        \DB::table('category_blogpost')->insert($categories);
     }
 }
