@@ -4,7 +4,7 @@ namespace Api\Comment\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use Modules\Comment\Enums\CommentStatusEnum;
+use Api\Comment\Enums\CommentStatusEnum;
 
 class CommentChangeStatusRequest extends FormRequest
 {

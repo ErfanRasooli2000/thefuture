@@ -4,7 +4,8 @@ namespace Api\Comment\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Modules\Comment\Enums\CommentStatusEnum;
+use Api\Comment\Enums\CommentStatusEnum;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Comment extends Model
 {
@@ -15,12 +16,12 @@ class Comment extends Model
     ];
     protected $guarded = [];
 
-    public function creator()
+    public function creator() :MorphTo
     {
         return $this->morphTo(__FUNCTION__, 'creator_type', 'created_by');
     }
 
-    public function modelable()
+    public function modelable() :MorphTo
     {
         return $this->morphTo(__FUNCTION__ , 'modelable_type', 'modelable_id');
     }

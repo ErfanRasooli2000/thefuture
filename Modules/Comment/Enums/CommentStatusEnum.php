@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Comment\Enums;
+namespace Api\Comment\Enums;
 
 use Api\Base\Traits\BaseEnumTrait;
 

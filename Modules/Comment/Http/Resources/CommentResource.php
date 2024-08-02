@@ -22,7 +22,7 @@ class CommentResource extends JsonResource
             'answer_to' => $this->answer_to,
             'creator' => $this->whenLoaded($this->creator),
             'post' => new SimpleBlogPostResource($this->whenLoaded($this->modelable)),
-
+            'created_at' => verta($this->created_at->format("Y-m-d H:i:s")),
         ];
     }
 }

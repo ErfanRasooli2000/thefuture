@@ -4,6 +4,7 @@ namespace Api\Comment\Database\Seeders;
 
 use Api\BlogPost\Models\BlogPost;
 use Api\Client\Models\Client;
+use Api\Comment\Enums\CommentStatusEnum;
 use Api\Comment\Models\Comment;
 use Illuminate\Database\Seeder;
 
@@ -17,7 +18,7 @@ class CommentSeeder extends Seeder
         for ($i = 1; $i <= 30; $i++) {
             Comment::create([
                 'text' => fake()->text(40),
-                'active' => fake()->boolean(),
+                'status' => CommentStatusEnum::values()[array_rand(CommentStatusEnum::values())],
                 'created_by' => fake()->numberBetween(1,10),
                 'creator_type' => Client::class,
                 'modelable_id' => fake()->numberBetween(1,10),
@@ -30,7 +31,7 @@ class CommentSeeder extends Seeder
 
             Comment::create([
                 'text' => fake()->text(40),
-                'active' => fake()->boolean(),
+                'status' => CommentStatusEnum::values()[array_rand(CommentStatusEnum::values())],
                 'answer_to' => $replyTo->id,
                 'created_by' => fake()->numberBetween(1,10),
                 'creator_type' => Client::class,

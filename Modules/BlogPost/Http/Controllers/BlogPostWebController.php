@@ -4,7 +4,7 @@ namespace Api\BlogPost\Http\Controllers;
 
 use Api\BlogPost\Models\BlogPost;
 use App\Http\Controllers\Controller;
-use Modules\Comment\Enums\CommentStatusEnum;
+use Api\Comment\Enums\CommentStatusEnum;
 
 class BlogPostWebController extends Controller
 {

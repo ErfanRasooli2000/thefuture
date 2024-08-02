@@ -5,6 +5,7 @@ namespace Api\Comment\Http\Controllers;
 use Api\BlogPost\Models\BlogPost;
 use Api\Comment\Database\Repos\Contracts\CommentRepositoryInterface;
 use Api\Comment\Http\Requests\CommentChangeStatusRequest;
+use Api\Comment\Http\Resources\CommentResource;
 use Api\Comment\Http\Resources\CommentShowResource;
 use Api\Comment\Models\Comment;
 use App\Http\Controllers\Controller;
@@ -21,9 +22,9 @@ class CommentController extends Controller
 
     public function index(Request $request)
     {
-        $result = $this->commentRepository->getAllWithPagination($request);
+        $result = CommentResource::collection($this->commentRepository->getAllWithPagination($request));
 
-        return $this->successResponse();
+        return $this->successResponse($result , 200 , null , $result->response()->getData()->meta);
     }
 
     public function show(Comment $comment)
