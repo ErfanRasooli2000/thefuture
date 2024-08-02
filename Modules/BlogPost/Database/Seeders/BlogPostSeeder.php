@@ -24,7 +24,7 @@ class BlogPostSeeder extends Seeder
                 'created_by' => 1
             ]);
 
-            $post->addMediaFromUrl('http://localhost:8000/storage/1/MainAfter.webp')->toMediaCollection('thumbnail');
+//            $post->addMediaFromUrl('https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630')->toMediaCollection('thumbnail');
 
             $categories[] = [
                 'modelable_id' => $post->id,
@@ -41,7 +41,5 @@ class BlogPostSeeder extends Seeder
                 ];
             }
         }
-
-        \DB::table('category_blogpost')->insert($categories);
     }
 }

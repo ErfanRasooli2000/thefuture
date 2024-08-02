@@ -20,7 +20,7 @@ class BlogPostWebController extends Controller
 
         $post->load(['creator' , 'comments.creator']);
 
-        $comments = $this->sortComments($post->comments);
+        $comments = $this->sortComments($post->comments->where('status' , CommentStatusEnum::Approved->value));
 
         return view('blogPost::post' , compact('post' , 'comments' , 'user'));
     }

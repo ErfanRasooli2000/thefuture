@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Api\Comment\Enums\CommentStatusEnum;
 
 return new class extends Migration
 {
@@ -15,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->text('text');
             $table->unsignedBigInteger('answer_to')->nullable();
-            $table->boolean('active')->default(false);
+            $table->enum('status' , \Api\Comment\Enums\CommentStatusEnum::values())->default(CommentStatusEnum::Pending->value);
             $table->unsignedBigInteger('created_by');
             $table->string('creator_type');
             $table->unsignedBigInteger('modelable_id');
