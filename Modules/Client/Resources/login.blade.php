@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/dependencies/plyr.min.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/fonts.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/app.css')}}" />
-    <title>قالب آموزشی نابغه - ورود و ثبت نام</title>
+    <title>مهندسی نرم افزار - ورود و ثبت نام</title>
 </head>
 
 <body>
@@ -27,8 +27,8 @@
                               clip-rule="evenodd" />
                     </svg>
                     <span class="flex flex-col items-start">
-                            <span class="font-semibold text-sm text-muted">آکــــادمـــی</span>
-                            <span class="font-black text-xl">نـــابــــغه</span>
+                            <span class="font-semibold text-sm text-muted">مهندس</span>
+                            <span class="font-black text-xl">نرم افزار</span>
                         </span>
                 </a>
             </div>

@@ -1,3 +1,0 @@
-[mysqld]
-innodb_force_recovery = 6
-innodb_fast_shutdown = 1
